@@ -14,9 +14,9 @@ import { filter } from 'rxjs/operators';
 @Injectable()
 export class RouteMatchService {
 
-  static instance: RouteMatchService;
+  private static instance: RouteMatchService;
   
-  static get urlTree(): UrlTree {
+  private static get urlTree(): UrlTree {
 
     const router: Router = RouteMatchService.instance.router;
 
@@ -48,8 +48,6 @@ export class RouteMatchService {
  * @param route
  */
   static urlFragmentMatcher (url: UrlSegment[], group: UrlSegmentGroup, route: Route): UrlMatchResult {
-
-console.log(route);
 
     const urlTree: UrlTree = RouteMatchService.urlTree;
     

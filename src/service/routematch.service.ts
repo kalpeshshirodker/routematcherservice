@@ -1,11 +1,10 @@
 // @Author: Kalpesh Shirodker: 
 // https://github.com/kalpeshshirodker
 
-import { Navigation, NavigationStart,
+import { Injectable } from '@angular/core';
+import { Navigation,
  Route, Router,
- RouterEvent,
  UrlMatchResult, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
-import { Injectable , ReflectiveInjector} from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 /**
@@ -49,6 +48,8 @@ export class RouteMatchService {
  * @param route
  */
   static urlFragmentMatcher (url: UrlSegment[], group: UrlSegmentGroup, route: Route): UrlMatchResult {
+
+console.log(route);
 
     const urlTree: UrlTree = RouteMatchService.urlTree;
     

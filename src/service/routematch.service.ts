@@ -1,52 +1,33 @@
 // @Author: Kalpesh Shirodker: 
 // https://github.com/kalpeshshirodker
 
-import { 
-  Navigation,
-  NavigationStart,
-  Route, Router,
-  RouterEvent,
-  UrlMatchResult, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
-import { Injectable } from '@angular/core';
-
+import { Navigation, NavigationStart,
+ Route, Router,
+ RouterEvent,
+ UrlMatchResult, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
+import { Injectable , ReflectiveInjector} from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 /**
- * Contains the references required to determine the current route for the application
+ * RouteMatchService 
  */
-class RouteContext {
-  private cn: Navigation;
 
-  get currentNavigation(): Navigation {
-    return this.cn;
-  }
-
-  set currentNavigation(nav: Navigation) {
-    this.cn = nav;
-  }
-
-  get urlTree(): UrlTree {
-    if (this.cn) {
-      return this.cn.extractedUrl;
-    }
-    return undefined;
-  }
-}
-
-/**
- * Service makes accessible the current navigation object from the Angular router
- *
- * The navigation object is used by the urlFragmentMatcher to match the route for a given
- * fragment.
- *
- */
 @Injectable()
 export class RouteMatchService {
 
   static instance: RouteMatchService;
   
-  static get currentContext(): RouteContext {
-    return RouteMatchService.instance.routeContext;
+  static get urlTree(): UrlTree {
+
+    const router: Router = RouteMatchService.instance.router;
+
+    const cn : Navigation = router.getCurrentNavigation();
+
+    if( cn ) {
+      return cn.extractedUrl;
+    }
+
+    return undefined;
   }
 
 /**
@@ -67,10 +48,9 @@ export class RouteMatchService {
  * @param group
  * @param route
  */
-
   static urlFragmentMatcher (url: UrlSegment[], group: UrlSegmentGroup, route: Route): UrlMatchResult {
 
-    const urlTree: UrlTree = RouteMatchService.currentContext.urlTree;
+    const urlTree: UrlTree = RouteMatchService.urlTree;
     
     if (!urlTree && !(urlTree instanceof UrlTree)) {
       return null;
@@ -95,13 +75,7 @@ export class RouteMatchService {
 
   }
 
-
   //#region Instance definition
-  private _routeContext: RouteContext = new RouteContext();
-
-  get routeContext(): RouteContext {
-    return this._routeContext;
-  }
   constructor(protected readonly router: Router) {
 
     // Make this service a singleton
@@ -109,36 +83,10 @@ export class RouteMatchService {
       return RouteMatchService.instance;
     }
 
-    // Create instance and initialize the service
-    this.initializeEvents();
-
-    // Update the reference for the current navigation
-    this.updateCurrentTransition();
-
     // save reference for later use
     RouteMatchService.instance = this;
 
   }
 
-  private initializeEvents() {
-
-    this.router.events
-      .pipe(filter((e:RouterEvent) => e instanceof NavigationStart))
-      .subscribe(e => {
-
-        this.updateCurrentTransition();
-
-      });
-
-  }
-
-  private updateCurrentTransition() {
-
-    const nav: Navigation = this.router.getCurrentNavigation();
-    this._routeContext.currentNavigation = nav;
-
-  }
-
   //#endregion
 }
-

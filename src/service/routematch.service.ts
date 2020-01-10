@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { Navigation,
  Route, Router,
  UrlMatchResult, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 /**
  * RouteMatchService 

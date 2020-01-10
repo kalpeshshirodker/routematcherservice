@@ -1,0 +1,46 @@
+{
+  "name": "angular-fragment-matcher",
+  "version": "1.0.1",
+  "description": "Angular service for matching url fragment during route navigation.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalpeshshirodker/routematcherservice.git"
+  },
+  "keywords": [
+    "angular",
+    "routing",
+    "urlmatcher",
+    "fragment",
+    "matcher",
+    "route",
+    "config"
+  ],
+  "author": "Kalpesh R Shirodker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalpeshshirodker/routematcherservice/issues"
+  },
+  "homepage": "https://github.com/kalpeshshirodker/routematcherservice#readme",
+  "dependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/compiler": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0",
+    "@angular/platform-browser": "^8.0.0",
+    "@angular/platform-browser-dynamic": "^8.0.0",
+    "@angular/router": "^8.0.0",
+    "core-js": "2",
+    "rxjs": "^6.5.2",
+    "zone.js": "^0.9.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.4"
+  }
+}

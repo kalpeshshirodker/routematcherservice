@@ -4,7 +4,9 @@ Provide url fragment matching capability which can be used for routing based on 
 For instance, we can define a route to load a component for creating a new object, when the url provided contains e.g. `<appurl>/states/#new`
 
 # Demo
-Angular Router Matcher Demo : [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-route-matcher-demo)
+Angular route fragment matcher demo : <a href="https://angular-fragment-matcher-demo.stackblitz.io/" target="_blank">Demo</a>
+
+> <a href="https://stackblitz.com/edit/angular-fragment-matcher-demo" target="_blank">Edit on StackBlitz ⚡️</a> 
 
 # User Guide
 Install `angular-fragment-matcher` using the [npm](https://www.npmjs.com/)

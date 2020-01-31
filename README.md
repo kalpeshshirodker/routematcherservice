@@ -47,19 +47,14 @@ const routes: Routes = [{
 Inorder to configure route config to use custom url matcher, we need to inject the RouterMatcherService in the feature module. 
 
 ```typescript
-import { RouteMatchService } from 'angular-fragment-matcher';
+import { RouteMatchService, RouteMatchModule } from 'angular-fragment-matcher';
 ```
 
-Define the provider for the `RouteMatchService` in `NgModule` providers array, using `useFactory` to inject the `Router` as `deps`
+Add the `RouteMatchModule` to the `imports` collection
 
 ```typescript
-// Factory function for getting an instance of RouteMatchService
-export function getRouteMatchService(router: Router): RouteMatchService {
-  return new RouteMatchService(router);
-}
-
 @NgModule({
-  imports: [ ..., RouterModule.forChild(routes) ],
+  imports: [ ..., RouterModule.forChild(routes), RouteMatchModule ],
   declarations: [ ... ],
   providers: [ {
     provide: RouteMatchService,
